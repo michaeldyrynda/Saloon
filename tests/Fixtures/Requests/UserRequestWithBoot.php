@@ -21,6 +21,7 @@ class UserRequestWithBoot extends SaloonRequest
      * @var string|null
      */
     protected ?string $connector = WithBootConnector::class;
+    protected string $farewell = 'Ride on, cowboy.';
 
     /**
      * Define the endpoint for the request.
@@ -41,8 +42,9 @@ class UserRequestWithBoot extends SaloonRequest
     /**
      * @param string $farewell
      */
-    public function __construct(protected string $farewell = 'Ride on, cowboy.')
+    public function __construct(string $farewell = 'Ride on, cowboy.')
     {
+        $this->farewell = $farewell;
         //
     }
 }

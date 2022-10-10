@@ -13,6 +13,8 @@ class GetUserRequest extends SaloonRequest
     use HasFormParams;
     use AcceptsJson;
 
+    protected OAuthConfig $oauthConfig;
+
     /**
      * Define the method that the request will use.
      *
@@ -35,8 +37,8 @@ class GetUserRequest extends SaloonRequest
      *
      * @param OAuthConfig $oauthConfig
      */
-    public function __construct(protected OAuthConfig $oauthConfig)
+    public function __construct(OAuthConfig $oauthConfig)
     {
-        //
+        $this->oauthConfig = $oauthConfig;
     }
 }

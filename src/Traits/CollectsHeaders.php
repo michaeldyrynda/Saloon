@@ -36,7 +36,7 @@ trait CollectsHeaders
      * @param mixed ...$headerCollection
      * @return $this
      */
-    public function mergeHeaders(array ...$headerCollection): static
+    public function mergeHeaders(array ...$headerCollection)
     {
         foreach ($headerCollection as $headers) {
             $this->customHeaders = array_merge($this->customHeaders, $headers);
@@ -51,7 +51,7 @@ trait CollectsHeaders
      * @param array $headers
      * @return $this
      */
-    public function setHeaders(array $headers): static
+    public function setHeaders(array $headers)
     {
         $this->ignoreDefaultHeaders();
 
@@ -67,7 +67,7 @@ trait CollectsHeaders
      * @param $value
      * @return $this
      */
-    public function addHeader(string $header, $value): static
+    public function addHeader(string $header, $value)
     {
         $this->customHeaders[$header] = $value;
 
@@ -80,7 +80,7 @@ trait CollectsHeaders
      * @param string|null $key
      * @return array
      */
-    public function getHeaders(string $key = null): mixed
+    public function getHeaders(string $key = null)
     {
         $headerBag = $this->includeDefaultHeaders
             ? array_merge($this->defaultHeaders(), $this->customHeaders)
@@ -109,7 +109,7 @@ trait CollectsHeaders
      *
      * @return $this
      */
-    public function ignoreDefaultHeaders(): static
+    public function ignoreDefaultHeaders()
     {
         $this->includeDefaultHeaders = false;
 

@@ -13,6 +13,9 @@ class DefaultPizzaAuthenticatorRequest extends SaloonRequest
 {
     use RequiresAuth;
 
+    public ?int $userId = null;
+    public ?int $groupId = null;
+
     /**
      * Define the method that the request will use.
      *
@@ -45,8 +48,9 @@ class DefaultPizzaAuthenticatorRequest extends SaloonRequest
         return new PizzaAuthenticator('BBQ Chicken', 'Lemonade');
     }
 
-    public function __construct(public ?int $userId = null, public ?int $groupId = null)
+    public function __construct(?int $userId = null, ?int $groupId = null)
     {
-        //
+        $this->userId = $userId;
+        $this->groupId = $groupId;
     }
 }

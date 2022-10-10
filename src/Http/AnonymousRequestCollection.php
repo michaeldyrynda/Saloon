@@ -7,6 +7,10 @@ use Sammyjo20\Saloon\Exceptions\NestedRequestNotFoundException;
 
 class AnonymousRequestCollection extends RequestCollection
 {
+    protected string $collectionName;
+
+    protected array $requests;
+
     /**
      * @param SaloonConnector $connector
      * @param string $collectionName
@@ -14,10 +18,13 @@ class AnonymousRequestCollection extends RequestCollection
      */
     public function __construct(
         SaloonConnector $connector,
-        protected string $collectionName,
-        protected array $requests,
+        string $collectionName,
+        array $requests
     ) {
         parent::__construct($connector);
+
+        $this->collectionName = $collectionName;
+        $this->requests = $requests;
     }
 
 

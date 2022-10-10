@@ -40,7 +40,7 @@ class HasBodyConnectorRequest extends SaloonRequest
      *
      * @return mixed
      */
-    public function defineBody(): mixed
+    public function defineBody()
     {
         return 'xml';
     }

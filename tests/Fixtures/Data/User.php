@@ -6,17 +6,20 @@ use Sammyjo20\Saloon\Http\SaloonResponse;
 
 class User
 {
+    public string $name;
+    public string $actualName;
+    public string $twitter;
+
     /**
      * @param string $name
      * @param string $actualName
      * @param string $twitter
      */
-    public function __construct(
-        public string $name,
-        public string $actualName,
-        public string $twitter,
-    ) {
-        //
+    public function __construct(string $name, string $actualName, string $twitter)
+    {
+        $this->name = $name;
+        $this->actualName = $actualName;
+        $this->twitter = $twitter;
     }
 
     /**

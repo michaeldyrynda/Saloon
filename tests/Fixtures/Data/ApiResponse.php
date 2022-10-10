@@ -6,13 +6,14 @@ use Sammyjo20\Saloon\Http\SaloonResponse;
 
 class ApiResponse
 {
+    public array $data;
+
     /**
      * @param array $data
      */
-    public function __construct(
-        public array $data,
-    ) {
-        //
+    public function __construct(array $data)
+    {
+        $this->data = $data;
     }
 
     /**

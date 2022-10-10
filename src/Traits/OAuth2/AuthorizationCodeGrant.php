@@ -105,7 +105,7 @@ trait AuthorizationCodeGrant
      * @throws \Sammyjo20\Saloon\Exceptions\SaloonException
      * @throws \Sammyjo20\Saloon\Exceptions\SaloonRequestException
      */
-    public function getAccessToken(string $code, string $state = null, string $expectedState = null, bool $returnResponse = false): OAuthAuthenticatorInterface|SaloonResponse
+    public function getAccessToken(string $code, string $state = null, string $expectedState = null, bool $returnResponse = false)
     {
         $this->oauthConfig()->validate();
 
@@ -136,7 +136,7 @@ trait AuthorizationCodeGrant
      * @throws \Sammyjo20\Saloon\Exceptions\SaloonException
      * @throws \Sammyjo20\Saloon\Exceptions\SaloonRequestException
      */
-    public function refreshAccessToken(OAuthAuthenticatorInterface|string $refreshToken, bool $returnResponse = false): OAuthAuthenticatorInterface|SaloonResponse
+    public function refreshAccessToken($refreshToken, bool $returnResponse = false)
     {
         $this->oauthConfig()->validate();
 

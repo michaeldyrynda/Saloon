@@ -234,12 +234,9 @@ class RequestManager
     {
         return $client->sendAsync($request, $requestOptions)
             ->then(
-                function (ResponseInterface $guzzleResponse) use ($requestOptions) {
-                    // Instead of the promise returning a Guzzle response, we want to return
-                    // a Saloon response.
-
-                    return $this->createResponse($requestOptions, $guzzleResponse);
-                },
+                fn (ResponseInterface $guzzleResponse) => // Instead of the promise returning a Guzzle response, we want to return
+// a Saloon response.
+$this->createResponse($requestOptions, $guzzleResponse),
                 function (GuzzleException $guzzleException) use ($requestOptions) {
                     // If the exception was a connect exception, we should return that in the
                     // promise instead rather than trying to convert it into a
@@ -336,7 +333,7 @@ class RequestManager
      * @throws SaloonMultipleMockMethodsException
      * @throws SaloonNoMockResponsesProvidedException
      */
-    private function bootMockClient(MockClient|null $mockClient): void
+    private function bootMockClient($mockClient): void
     {
         if (is_null($mockClient)) {
             return;

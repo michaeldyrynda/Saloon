@@ -2,6 +2,7 @@
 
 namespace Sammyjo20\Saloon\Traits;
 
+use ReflectionException;
 use Sammyjo20\Saloon\Http\SaloonRequest;
 use Sammyjo20\Saloon\Http\SaloonResponse;
 use Sammyjo20\Saloon\Helpers\ReflectionHelper;
@@ -21,7 +22,7 @@ trait HasCustomResponses
      * Get the response class
      *
      * @return string
-     * @throws \ReflectionException
+     * @throws ReflectionException
      * @throws SaloonInvalidConnectorException
      * @throws SaloonInvalidResponseClassException
      */

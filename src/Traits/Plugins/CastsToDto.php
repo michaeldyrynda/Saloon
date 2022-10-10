@@ -31,5 +31,5 @@ trait CastsToDto
      * @param SaloonResponse $response
      * @return mixed
      */
-    abstract protected function castToDto(SaloonResponse $response): mixed;
+    abstract protected function castToDto(SaloonResponse $response);
 }

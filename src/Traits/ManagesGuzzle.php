@@ -2,6 +2,8 @@
 
 namespace Sammyjo20\Saloon\Traits;
 
+use Sammyjo20\Saloon\Exceptions\SaloonInvalidConnectorException;
+use Sammyjo20\Saloon\Exceptions\SaloonMissingMockException;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Client as GuzzleClient;
@@ -22,7 +24,7 @@ trait ManagesGuzzle
      * Create the Guzzle request
      *
      * @return Request
-     * @throws \Sammyjo20\Saloon\Exceptions\SaloonInvalidConnectorException
+     * @throws SaloonInvalidConnectorException
      */
     public function createGuzzleRequest(): Request
     {
@@ -35,7 +37,7 @@ trait ManagesGuzzle
      * @return GuzzleClient
      * @throws SaloonDuplicateHandlerException
      * @throws SaloonInvalidHandlerException
-     * @throws \Sammyjo20\Saloon\Exceptions\SaloonMissingMockException
+     * @throws SaloonMissingMockException
      */
     private function createGuzzleClient(): GuzzleClient
     {

@@ -2,6 +2,8 @@
 
 namespace Sammyjo20\Saloon\Traits;
 
+use GuzzleHttp\Exception\GuzzleException;
+use ReflectionException;
 use GuzzleHttp\Promise\PromiseInterface;
 use Sammyjo20\Saloon\Clients\MockClient;
 use Sammyjo20\Saloon\Http\SaloonResponse;
@@ -17,8 +19,8 @@ trait SendsRequests
      * @param bool $asynchronous
      * @return SaloonResponse
      * @throws SaloonException
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \ReflectionException
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function send(MockClient $mockClient = null, bool $asynchronous = false): SaloonResponse
     {
@@ -35,9 +37,9 @@ trait SendsRequests
      * @param MockClient|null $mockClient
      * @return PromiseInterface
      * @throws SaloonException
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \ReflectionException
-     * @throws \Sammyjo20\Saloon\Exceptions\SaloonException
+     * @throws GuzzleException
+     * @throws ReflectionException
+     * @throws SaloonException
      */
     public function sendAsync(MockClient $mockClient = null): PromiseInterface
     {
@@ -50,7 +52,7 @@ trait SendsRequests
      * @param MockClient|null $mockClient
      * @param bool $asynchronous
      * @return RequestManager
-     * @throws \Sammyjo20\Saloon\Exceptions\SaloonException
+     * @throws SaloonException
      */
     public function getRequestManager(MockClient $mockClient = null, bool $asynchronous = false): RequestManager
     {

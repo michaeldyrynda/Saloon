@@ -2,6 +2,7 @@
 
 namespace Sammyjo20\Saloon\Helpers;
 
+use ReflectionException;
 use ReflectionClass;
 use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
@@ -14,7 +15,7 @@ class ProxyRequestNameHelper
      *
      * @param array $requests
      * @return array
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public static function generateNames(array $requests): array
     {

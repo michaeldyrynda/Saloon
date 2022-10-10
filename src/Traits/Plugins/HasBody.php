@@ -22,5 +22,5 @@ trait HasBody
      *
      * @return mixed
      */
-    abstract public function defineBody(): mixed;
+    abstract public function defineBody();
 }

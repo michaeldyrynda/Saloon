@@ -7,15 +7,17 @@ use Sammyjo20\Saloon\Interfaces\AuthenticatorInterface;
 
 class BasicAuthenticator implements AuthenticatorInterface
 {
+    public string $username;
+    public string $password;
+
     /**
      * @param string $username
      * @param string $password
      */
-    public function __construct(
-        public string $username,
-        public string $password,
-    ) {
-        //
+    public function __construct(string $username, string $password)
+    {
+        $this->username = $username;
+        $this->password = $password;
     }
 
     /**

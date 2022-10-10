@@ -26,6 +26,7 @@ class ServiceRequestConnector extends SaloonConnector
         ErrorRequest::class,
         GuessedCollection::class,
     ];
+    public ?string $apiKey = null;
 
     /**
      * Define the base url of the api.
@@ -47,8 +48,9 @@ class ServiceRequestConnector extends SaloonConnector
         return [];
     }
 
-    public function __construct(public ?string $apiKey = null)
+    public function __construct(?string $apiKey = null)
     {
+        $this->apiKey = $apiKey;
         //
     }
 }

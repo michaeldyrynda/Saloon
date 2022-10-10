@@ -4,6 +4,7 @@ namespace Sammyjo20\Saloon\Traits;
 
 use Illuminate\Support\Arr;
 use Sammyjo20\Saloon\Http\SaloonRequest;
+use Sammyjo20\Saloon\Exceptions\SaloonInvalidConnectorException;
 
 trait CollectsQueryParams
 {
@@ -37,7 +38,7 @@ trait CollectsQueryParams
      * @param mixed ...$queryCollection
      * @return $this
      */
-    public function mergeQuery(array ...$queryCollection): static
+    public function mergeQuery(array ...$queryCollection): self
     {
         foreach ($queryCollection as $query) {
             $this->customQuery = array_merge($this->customQuery, $query);
@@ -52,7 +53,7 @@ trait CollectsQueryParams
      * @param array $query
      * @return $this
      */
-    public function setQuery(array $query): static
+    public function setQuery(array $query): self
     {
         $this->ignoreDefaultQuery();
 
@@ -68,7 +69,7 @@ trait CollectsQueryParams
      * @param $value
      * @return $this
      */
-    public function addQuery(string $query, $value): static
+    public function addQuery(string $query, $value): self
     {
         $this->customQuery[$query] = $value;
 
@@ -80,9 +81,9 @@ trait CollectsQueryParams
      *
      * @param string|null $key
      * @return mixed
-     * @throws \Sammyjo20\Saloon\Exceptions\SaloonInvalidConnectorException
+     * @throws SaloonInvalidConnectorException
      */
-    public function getQuery(string $key = null): mixed
+    public function getQuery(string $key = null)
     {
         if ($this->includeDefaultQuery === true) {
             // Let's merge in the query parameters from the connector if
@@ -109,7 +110,7 @@ trait CollectsQueryParams
      *
      * @return $this
      */
-    public function ignoreDefaultQuery(): static
+    public function ignoreDefaultQuery(): self
     {
         $this->includeDefaultQuery = false;
 

@@ -13,6 +13,9 @@ class DefaultAuthenticatorRequest extends SaloonRequest
 {
     use RequiresAuth;
 
+    public ?int $userId = null;
+    public ?int $groupId = null;
+
     /**
      * Define the method that the request will use.
      *
@@ -47,8 +50,9 @@ class DefaultAuthenticatorRequest extends SaloonRequest
         return new TokenAuthenticator('yee-haw-request');
     }
 
-    public function __construct(public ?int $userId = null, public ?int $groupId = null)
+    public function __construct(?int $userId = null, ?int $groupId = null)
     {
-        //
+        $this->userId = $userId;
+        $this->groupId = $groupId;
     }
 }

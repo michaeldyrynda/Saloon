@@ -7,6 +7,11 @@ use Sammyjo20\Saloon\Http\Auth\AccessTokenAuthenticator;
 
 class CustomOAuthAuthenticator extends AccessTokenAuthenticator
 {
+    public string $accessToken;
+    public string $refreshToken;
+    public CarbonInterface $expiresAt;
+    public string $greeting;
+
     /**
      * @param string $accessToken
      * @param string $refreshToken
@@ -14,12 +19,15 @@ class CustomOAuthAuthenticator extends AccessTokenAuthenticator
      * @param string $greeting
      */
     public function __construct(
-        public string $accessToken,
-        public string $refreshToken,
-        public CarbonInterface $expiresAt,
-        public string $greeting,
+        string $accessToken,
+        string $refreshToken,
+        CarbonInterface $expiresAt,
+        string $greeting
     ) {
-        //
+        $this->accessToken = $accessToken;
+        $this->refreshToken = $refreshToken;
+        $this->expiresAt = $expiresAt;
+        $this->greeting = $greeting;
     }
 
     /**

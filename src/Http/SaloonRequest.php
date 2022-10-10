@@ -143,7 +143,7 @@ abstract class SaloonRequest implements SaloonRequestInterface
      * @param SaloonConnector $connector
      * @return $this
      */
-    public function setConnector(SaloonConnector $connector): static
+    public function setConnector(SaloonConnector $connector): self
     {
         $this->loadedConnector = $connector;
 
@@ -200,7 +200,7 @@ abstract class SaloonRequest implements SaloonRequestInterface
      * @param mixed ...$arguments
      * @return SaloonRequest
      */
-    public static function make(...$arguments): static
+    public static function make(...$arguments): self
     {
         return new static(...$arguments);
     }

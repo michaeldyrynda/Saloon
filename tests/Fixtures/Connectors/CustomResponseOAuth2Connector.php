@@ -13,12 +13,14 @@ class CustomResponseOAuth2Connector extends SaloonConnector
 {
     use AuthorizationCodeGrant;
 
+    protected string $greeting;
+
     /**
      * @param string $greeting
      */
-    public function __construct(protected string $greeting)
+    public function __construct(string $greeting)
     {
-        //
+        $this->greeting = $greeting;
     }
 
     /**

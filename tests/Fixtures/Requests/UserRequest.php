@@ -21,6 +21,8 @@ class UserRequest extends SaloonRequest
      * @var string|null
      */
     protected ?string $connector = TestConnector::class;
+    public ?int $userId = null;
+    public ?int $groupId = null;
 
     /**
      * Define the endpoint for the request.
@@ -32,8 +34,10 @@ class UserRequest extends SaloonRequest
         return '/user';
     }
 
-    public function __construct(public ?int $userId = null, public ?int $groupId = null)
+    public function __construct(?int $userId = null, ?int $groupId = null)
     {
+        $this->userId = $userId;
+        $this->groupId = $groupId;
         //
     }
 }

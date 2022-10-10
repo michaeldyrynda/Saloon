@@ -7,15 +7,17 @@ use Sammyjo20\Saloon\Interfaces\AuthenticatorInterface;
 
 class TokenAuthenticator implements AuthenticatorInterface
 {
+    public string $token;
+    public string $prefix = 'Bearer';
+
     /**
      * @param string $token
      * @param string $prefix
      */
-    public function __construct(
-        public string $token,
-        public string $prefix = 'Bearer'
-    ) {
-        //
+    public function __construct(string $token, string $prefix = 'Bearer')
+    {
+        $this->token = $token;
+        $this->prefix = $prefix;
     }
 
     /**

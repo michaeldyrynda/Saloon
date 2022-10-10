@@ -2,6 +2,7 @@
 
 namespace Sammyjo20\Saloon\Traits;
 
+use ReflectionException;
 trait ManagesPlugins
 {
     /**
@@ -14,7 +15,7 @@ trait ManagesPlugins
     /**
      * Load all the plugins.
      *
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     private function loadPlugins(): void
     {

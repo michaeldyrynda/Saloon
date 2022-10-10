@@ -104,7 +104,7 @@ test('if you chain an erroneous asynchronous request the error can be caught in 
 
     try {
         $promise->wait();
-    } catch (\Exception $ex) {
+    } catch (Exception $ex) {
         //
     }
 });
@@ -126,7 +126,7 @@ test('if a connection exception happens it will be provided in the rejection han
 
     try {
         $promise->wait();
-    } catch (\Exception $ex) {
+    } catch (Exception $ex) {
         //
     }
 });

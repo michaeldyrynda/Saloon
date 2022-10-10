@@ -2,6 +2,7 @@
 
 namespace Sammyjo20\Saloon\Traits\Plugins;
 
+use Sammyjo20\Saloon\Exceptions\SaloonInvalidConnectorException;
 use Sammyjo20\Saloon\Http\SaloonRequest;
 use Sammyjo20\Saloon\Http\SaloonResponse;
 
@@ -12,7 +13,7 @@ trait AlwaysThrowsOnErrors
      *
      * @param SaloonRequest $request
      * @return void
-     * @throws \Sammyjo20\Saloon\Exceptions\SaloonInvalidConnectorException
+     * @throws SaloonInvalidConnectorException
      */
     public function bootAlwaysThrowsOnErrors(SaloonRequest $request): void
     {

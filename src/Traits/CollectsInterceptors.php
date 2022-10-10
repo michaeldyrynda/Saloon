@@ -22,7 +22,7 @@ trait CollectsInterceptors
      * @param array ...$interceptorsCollection
      * @return $this
      */
-    public function mergeResponseInterceptors(array ...$interceptorsCollection): static
+    public function mergeResponseInterceptors(array ...$interceptorsCollection)
     {
         foreach ($interceptorsCollection as $responseInterceptor) {
             $this->responseInterceptors = array_merge($this->responseInterceptors, $responseInterceptor);

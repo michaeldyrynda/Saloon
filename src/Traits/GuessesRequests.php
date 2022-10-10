@@ -2,6 +2,7 @@
 
 namespace Sammyjo20\Saloon\Traits;
 
+use ReflectionException;
 use Sammyjo20\Saloon\Http\SaloonRequest;
 use Sammyjo20\Saloon\Helpers\RequestHelper;
 use Sammyjo20\Saloon\Http\RequestCollection;
@@ -28,7 +29,7 @@ trait GuessesRequests
      * @param array $args
      * @return SaloonRequest
      * @throws SaloonInvalidRequestException
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     protected function forwardCallToRequest(string $request, array $args = []): SaloonRequest
     {
@@ -39,7 +40,7 @@ trait GuessesRequests
      * Bootstrap and get the registered requests in the $requests array.
      *
      * @return array
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function getRegisteredRequests(): array
     {
@@ -61,7 +62,7 @@ trait GuessesRequests
      *
      * @param string $method
      * @return bool
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function requestExists(string $method): bool
     {
@@ -77,9 +78,9 @@ trait GuessesRequests
      * @throws ClassNotFoundException
      * @throws SaloonConnectorMethodNotFoundException
      * @throws SaloonInvalidRequestException
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
-    protected function guessRequest($method, $arguments): mixed
+    protected function guessRequest($method, $arguments)
     {
         if ($this->requestExists($method) === false) {
             throw new SaloonConnectorMethodNotFoundException($method, $this);

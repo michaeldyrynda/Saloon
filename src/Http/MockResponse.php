@@ -10,6 +10,7 @@ use Sammyjo20\Saloon\Traits\CollectsConfig;
 use Sammyjo20\Saloon\Traits\CollectsHeaders;
 use Sammyjo20\Saloon\Traits\Plugins\HasBody;
 use Sammyjo20\Saloon\Data\MockExceptionClosure;
+use Sammyjo20\Saloon\Exceptions\SaloonInvalidConnectorException;
 
 class MockResponse
 {
@@ -25,7 +26,7 @@ class MockResponse
     /**
      * @var mixed
      */
-    protected mixed $rawData = null;
+    protected $rawData = null;
 
     /**
      * @var MockExceptionClosure|null
@@ -40,7 +41,7 @@ class MockResponse
      * @param array $headers
      * @param array $config
      */
-    public function __construct(mixed $data = [], int $status = 200, array $headers = [], array $config = [])
+    public function __construct($data = [], int $status = 200, array $headers = [], array $config = [])
     {
         $this->status = $status;
 
@@ -66,7 +67,7 @@ class MockResponse
      * @param array $config
      * @return static
      */
-    public static function make(mixed $data = [], int $status = 200, array $headers = [], array $config = []): self
+    public static function make($data = [], int $status = 200, array $headers = [], array $config = []): self
     {
         return new static($data, $status, $headers, $config);
     }
@@ -77,7 +78,7 @@ class MockResponse
      * @param SaloonRequest $request
      * @param int $status
      * @return static
-     * @throws \Sammyjo20\Saloon\Exceptions\SaloonInvalidConnectorException
+     * @throws SaloonInvalidConnectorException
      */
     public static function fromRequest(SaloonRequest $request, int $status = 200): self
     {
@@ -98,7 +99,7 @@ class MockResponse
      * @param callable|Throwable $value
      * @return $this
      */
-    public function throw(callable|Throwable $value): self
+    public function throw($value): self
     {
         $closure = $value instanceof Throwable ? static fn () => $value : $value;
 
@@ -121,9 +122,9 @@ class MockResponse
      * Get the formatted data on the response.
      *
      * @return mixed
-     * @throws \Sammyjo20\Saloon\Exceptions\SaloonInvalidConnectorException
+     * @throws SaloonInvalidConnectorException
      */
-    public function getFormattedData(): mixed
+    public function getFormattedData()
     {
         if (isset($this->rawData)) {
             return $this->rawData;
@@ -132,7 +133,7 @@ class MockResponse
         $data = $this->getData();
 
         if (is_array($data) && $this->getHeader('Content-Type') == 'application/json') {
-            return json_encode($data);
+            return json_encode($data, JSON_THROW_ON_ERROR);
         }
 
         return $data;
@@ -142,7 +143,7 @@ class MockResponse
      * Convert the mock response into a Guzzle response
      *
      * @return Response
-     * @throws \Sammyjo20\Saloon\Exceptions\SaloonInvalidConnectorException
+     * @throws SaloonInvalidConnectorException
      */
     public function toGuzzleResponse(): Response
     {

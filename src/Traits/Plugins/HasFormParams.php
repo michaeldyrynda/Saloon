@@ -2,6 +2,7 @@
 
 namespace Sammyjo20\Saloon\Traits\Plugins;
 
+use Sammyjo20\Saloon\Exceptions\SaloonInvalidConnectorException;
 use Sammyjo20\Saloon\Http\SaloonRequest;
 
 trait HasFormParams
@@ -9,7 +10,7 @@ trait HasFormParams
     /**
      * @param SaloonRequest $request
      * @return void
-     * @throws \Sammyjo20\Saloon\Exceptions\SaloonInvalidConnectorException
+     * @throws SaloonInvalidConnectorException
      */
     public function bootHasFormParams(SaloonRequest $request): void
     {
@@ -20,7 +21,7 @@ trait HasFormParams
      * Check if the connector has a trait
      *
      * @return bool
-     * @throws \Sammyjo20\Saloon\Exceptions\SaloonInvalidConnectorException
+     * @throws SaloonInvalidConnectorException
      */
     protected function connectorHasDataTrait(): bool
     {

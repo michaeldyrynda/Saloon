@@ -13,6 +13,10 @@ class GetAccessTokenRequest extends SaloonRequest
     use HasFormParams;
     use AcceptsJson;
 
+    protected string $code;
+
+    protected OAuthConfig $oauthConfig;
+
     /**
      * Define the method that the request will use.
      *
@@ -36,9 +40,10 @@ class GetAccessTokenRequest extends SaloonRequest
      * @param string $code
      * @param OAuthConfig $oauthConfig
      */
-    public function __construct(protected string $code, protected OAuthConfig $oauthConfig)
+    public function __construct(string $code, OAuthConfig $oauthConfig)
     {
-        //
+        $this->code = $code;
+        $this->oauthConfig = $oauthConfig;
     }
 
     /**

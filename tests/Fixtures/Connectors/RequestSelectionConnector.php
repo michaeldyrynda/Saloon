@@ -16,6 +16,8 @@ class RequestSelectionConnector extends SaloonConnector
 {
     use AcceptsJson;
 
+    public ?string $apiKey;
+
     /**
      * Manually specify requests that the connector will register as methods
      *
@@ -60,8 +62,8 @@ class RequestSelectionConnector extends SaloonConnector
         return $this->forwardCallToRequest(UserRequest::class, $args);
     }
 
-    public function __construct(public ?string $apiKey = null)
+    public function __construct(?string $apiKey = null)
     {
-        //
+        $this->apiKey = $apiKey;
     }
 }

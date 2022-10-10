@@ -2,6 +2,7 @@
 
 namespace Sammyjo20\Saloon\Helpers;
 
+use ReflectionException;
 use ReflectionClass;
 
 class ReflectionHelper
@@ -12,7 +13,7 @@ class ReflectionHelper
      * @param string $class
      * @param string $subclass
      * @return bool
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public static function isSubclassOf(string $class, string $subclass): bool
     {

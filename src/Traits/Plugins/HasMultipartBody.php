@@ -2,6 +2,7 @@
 
 namespace Sammyjo20\Saloon\Traits\Plugins;
 
+use Sammyjo20\Saloon\Exceptions\SaloonInvalidConnectorException;
 use Sammyjo20\Saloon\Http\SaloonRequest;
 
 trait HasMultipartBody
@@ -19,7 +20,7 @@ trait HasMultipartBody
      * Check if the connector has a trait
      *
      * @return bool
-     * @throws \Sammyjo20\Saloon\Exceptions\SaloonInvalidConnectorException
+     * @throws SaloonInvalidConnectorException
      */
     protected function connectorHasDataTrait(): bool
     {

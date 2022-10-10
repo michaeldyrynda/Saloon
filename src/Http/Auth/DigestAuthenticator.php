@@ -7,17 +7,20 @@ use Sammyjo20\Saloon\Interfaces\AuthenticatorInterface;
 
 class DigestAuthenticator implements AuthenticatorInterface
 {
+    public string $username;
+    public string $password;
+    public string $digest;
+
     /**
      * @param string $username
      * @param string $password
      * @param string $digest
      */
-    public function __construct(
-        public string $username,
-        public string $password,
-        public string $digest,
-    ) {
-        //
+    public function __construct(string $username, string $password, string $digest)
+    {
+        $this->username = $username;
+        $this->password = $password;
+        $this->digest = $digest;
     }
 
     /**

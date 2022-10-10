@@ -13,6 +13,9 @@ class DTORequest extends SaloonRequest
 {
     use CastsToDto;
 
+    public ?int $userId = null;
+    public ?int $groupId = null;
+
     /**
      * Define the method that the request will use.
      *
@@ -37,9 +40,10 @@ class DTORequest extends SaloonRequest
         return '/user';
     }
 
-    public function __construct(public ?int $userId = null, public ?int $groupId = null)
+    public function __construct(?int $userId = null, ?int $groupId = null)
     {
-        //
+        $this->userId = $userId;
+        $this->groupId = $groupId;
     }
 
     /**

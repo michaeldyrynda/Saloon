@@ -2,6 +2,7 @@
 
 namespace Sammyjo20\Saloon\Helpers;
 
+use ReflectionException;
 use Sammyjo20\Saloon\Http\SaloonRequest;
 use Sammyjo20\Saloon\Http\SaloonConnector;
 use Sammyjo20\Saloon\Exceptions\SaloonInvalidRequestException;
@@ -16,7 +17,7 @@ class RequestHelper
      * @param array $arguments
      * @return mixed
      * @throws SaloonInvalidRequestException
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public static function callFromConnector(SaloonConnector $connector, string $request, array $arguments = [])
     {

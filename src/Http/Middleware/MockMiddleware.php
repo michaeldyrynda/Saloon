@@ -2,6 +2,7 @@
 
 namespace Sammyjo20\Saloon\Http\Middleware;
 
+use Closure;
 use Psr\Http\Message\RequestInterface;
 use GuzzleHttp\Promise\RejectedPromise;
 use Sammyjo20\Saloon\Http\MockResponse;
@@ -26,7 +27,7 @@ class MockMiddleware
      * Return the fake fulfilled response.
      *
      * @param callable $handler
-     * @return \Closure
+     * @return Closure
      */
     public function __invoke(callable $handler)
     {

@@ -62,7 +62,7 @@ class SaloonResponse
      *
      * @var object|null
      */
-    protected mixed $dto = null;
+    protected $dto = null;
 
     /**
      * Determines if the response has been cached
@@ -170,7 +170,7 @@ class SaloonResponse
      * @param ...$arguments
      * @return SimpleXMLElement|bool
      */
-    public function xml(...$arguments): SimpleXMLElement|bool
+    public function xml(...$arguments)
     {
         if (! $this->decodedXml) {
             $this->decodedXml = $this->body();
@@ -195,7 +195,7 @@ class SaloonResponse
      *
      * @return object|null
      */
-    public function dto(): mixed
+    public function dto()
     {
         return $this->dto;
     }
@@ -346,7 +346,7 @@ class SaloonResponse
     public function toException()
     {
         if ($this->failed()) {
-            $body = $this->response?->getBody()?->getContents();
+            $body = $this->response->getBody()->getContents() ?? null;
 
             return new SaloonRequestException($this, $body, 0, $this->getGuzzleException());
         }
@@ -439,7 +439,7 @@ class SaloonResponse
      * @param mixed $dto
      * @return $this
      */
-    public function setDto(mixed $dto): self
+    public function setDto($dto): self
     {
         $this->dto = $dto;
 

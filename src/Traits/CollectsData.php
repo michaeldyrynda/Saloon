@@ -4,6 +4,7 @@ namespace Sammyjo20\Saloon\Traits;
 
 use Illuminate\Support\Arr;
 use Sammyjo20\Saloon\Http\SaloonRequest;
+use Sammyjo20\Saloon\Exceptions\SaloonInvalidConnectorException;
 
 trait CollectsData
 {
@@ -37,7 +38,7 @@ trait CollectsData
      * @param mixed ...$dataCollection
      * @return $this
      */
-    public function mergeData(array ...$dataCollection): static
+    public function mergeData(array ...$dataCollection): self
     {
         foreach ($dataCollection as $data) {
             $this->customData = array_merge($this->customData, $data);
@@ -52,7 +53,7 @@ trait CollectsData
      * @param array $data
      * @return $this
      */
-    public function setData(array $data): static
+    public function setData(array $data): self
     {
         $this->ignoreDefaultData();
 
@@ -68,7 +69,7 @@ trait CollectsData
      * @param $value
      * @return $this
      */
-    public function addData(string $data, $value): static
+    public function addData(string $data, $value): self
     {
         $this->customData[$data] = $value;
 
@@ -80,9 +81,9 @@ trait CollectsData
      *
      * @param string|null $key
      * @return mixed
-     * @throws \Sammyjo20\Saloon\Exceptions\SaloonInvalidConnectorException
+     * @throws SaloonInvalidConnectorException
      */
-    public function getData(string $key = null): mixed
+    public function getData(string $key = null)
     {
         if ($this->includeDefaultData === true) {
             // Let's merge in the query parameters from the connector if
@@ -113,7 +114,7 @@ trait CollectsData
      *
      * @return $this
      */
-    public function ignoreDefaultData(): static
+    public function ignoreDefaultData(): self
     {
         $this->includeDefaultData = false;
 

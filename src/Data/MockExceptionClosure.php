@@ -7,13 +7,15 @@ use Psr\Http\Message\RequestInterface;
 
 class MockExceptionClosure
 {
+    /** @var mixed */
+    public $closure;
+
     /**
      * @param mixed $closure
      */
-    public function __construct(
-        public mixed $closure
-    ) {
-        //
+    public function __construct($closure)
+    {
+        $this->closure = $closure;
     }
 
     /**

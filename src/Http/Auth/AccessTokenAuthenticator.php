@@ -8,17 +8,23 @@ use Sammyjo20\Saloon\Interfaces\OAuthAuthenticatorInterface;
 
 class AccessTokenAuthenticator implements OAuthAuthenticatorInterface
 {
+    public string $accessToken;
+    public string $refreshToken;
+    public CarbonInterface $expiresAt;
+
     /**
      * @param string $accessToken
      * @param string $refreshToken
      * @param CarbonInterface $expiresAt
      */
     public function __construct(
-        public string $accessToken,
-        public string $refreshToken,
-        public CarbonInterface $expiresAt,
+        string $accessToken,
+        string $refreshToken,
+        CarbonInterface $expiresAt
     ) {
-        //
+        $this->accessToken = $accessToken;
+        $this->refreshToken = $refreshToken;
+        $this->expiresAt = $expiresAt;
     }
 
     /**
@@ -48,7 +54,7 @@ class AccessTokenAuthenticator implements OAuthAuthenticatorInterface
      * @param string $string
      * @return static
      */
-    public static function unserialize(string $string): static
+    public static function unserialize(string $string): self
     {
         return unserialize($string, ['allowed_classes' => true]);
     }

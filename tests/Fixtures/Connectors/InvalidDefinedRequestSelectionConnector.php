@@ -25,6 +25,7 @@ class InvalidDefinedRequestSelectionConnector extends SaloonConnector
         'missing_request' => MissingClass::class, // Invalid Class
         'test_connector' => TestConnector::class, // Invalid Connector
     ];
+    public ?string $apiKey = null;
 
     /**
      * Define the base url of the api.
@@ -46,8 +47,9 @@ class InvalidDefinedRequestSelectionConnector extends SaloonConnector
         return [];
     }
 
-    public function __construct(public ?string $apiKey = null)
+    public function __construct(?string $apiKey = null)
     {
+        $this->apiKey = $apiKey;
         //
     }
 }

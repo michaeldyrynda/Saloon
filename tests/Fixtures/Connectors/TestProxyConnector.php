@@ -2,6 +2,7 @@
 
 namespace Sammyjo20\Saloon\Tests\Fixtures\Connectors;
 
+use ReflectionException;
 use Sammyjo20\Saloon\Http\SaloonRequest;
 use Sammyjo20\Saloon\Http\SaloonConnector;
 use Sammyjo20\Saloon\Traits\Plugins\AcceptsJson;
@@ -36,7 +37,7 @@ class TestProxyConnector extends SaloonConnector
      *
      * @param ...$args
      * @return SaloonRequest
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function getUser(...$args): SaloonRequest
     {

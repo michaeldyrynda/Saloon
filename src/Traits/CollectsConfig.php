@@ -36,7 +36,7 @@ trait CollectsConfig
      * @param mixed ...$configCollection
      * @return $this
      */
-    public function mergeConfig(array ...$configCollection): static
+    public function mergeConfig(array ...$configCollection)
     {
         foreach ($configCollection as $config) {
             $this->customConfig = array_merge($this->customConfig, $config);
@@ -52,7 +52,7 @@ trait CollectsConfig
      * @param array $config
      * @return $this
      */
-    public function setConfig(array $config): static
+    public function setConfig(array $config)
     {
         $this->ignoreDefaultConfig();
 
@@ -68,7 +68,7 @@ trait CollectsConfig
      * @param $value
      * @return $this
      */
-    public function addConfig(string $item, $value): static
+    public function addConfig(string $item, $value)
     {
         $this->customConfig[$item] = $value;
 
@@ -81,7 +81,7 @@ trait CollectsConfig
      * @param string|null $key
      * @return array
      */
-    public function getConfig(string $key = null): mixed
+    public function getConfig(string $key = null)
     {
         $configBag = $this->includeDefaultConfig
             ? array_merge($this->defaultConfig(), $this->customConfig)
@@ -99,7 +99,7 @@ trait CollectsConfig
      *
      * @return $this
      */
-    public function ignoreDefaultConfig(): static
+    public function ignoreDefaultConfig()
     {
         $this->includeDefaultConfig = false;
 

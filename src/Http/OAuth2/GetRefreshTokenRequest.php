@@ -13,6 +13,9 @@ class GetRefreshTokenRequest extends SaloonRequest
     use HasFormParams;
     use AcceptsJson;
 
+    protected OAuthConfig $oauthConfig;
+    protected string $refreshToken;
+
     /**
      * Define the method that the request will use.
      *
@@ -36,9 +39,10 @@ class GetRefreshTokenRequest extends SaloonRequest
      * @param OAuthConfig $oauthConfig
      * @param string $refreshToken
      */
-    public function __construct(protected OAuthConfig $oauthConfig, protected string $refreshToken)
+    public function __construct(OAuthConfig $oauthConfig, string $refreshToken)
     {
-        //
+        $this->oauthConfig = $oauthConfig;
+        $this->refreshToken = $refreshToken;
     }
 
     /**
