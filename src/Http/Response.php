@@ -287,8 +287,11 @@ class Response
 
     /**
      * Cast the response to a DTO.
+     *
+     * @template T of object
+     * @return ($dto is class-string<T> ? T : object)
      */
-    public function dto(): mixed
+    public function dto(?string $dto = null): mixed
     {
         $request = $this->pendingRequest->getRequest();
         $connector = $this->pendingRequest->getConnector();
@@ -304,8 +307,11 @@ class Response
 
     /**
      * Convert the response into a DTO or throw a LogicException if the response failed
+     *
+     * @template T of object
+     * @return ($dto is class-string<T> ? T : object)
      */
-    public function dtoOrFail(): mixed
+    public function dtoOrFail(?string $dto = null): mixed
     {
         if ($this->failed()) {
             throw new LogicException('Unable to create data transfer object as the response has failed.', 0, $this->toException());
