@@ -320,7 +320,7 @@ class Response
             throw new LogicException('Unable to create data transfer object as the response has failed.', 0, $this->toException());
         }
 
-        return $this->dto();
+        return $this->dto($dto);
     }
 
     /**
