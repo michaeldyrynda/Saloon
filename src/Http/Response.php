@@ -76,7 +76,7 @@ class Response
     /**
      * Create a new response instance.
      */
-    public function __construct(ResponseInterface $psrResponse, PendingRequest $pendingRequest, RequestInterface $psrRequest, Throwable $senderException = null)
+    public function __construct(ResponseInterface $psrResponse, PendingRequest $pendingRequest, RequestInterface $psrRequest, ?Throwable $senderException = null)
     {
         $this->psrRequest = $psrRequest;
         $this->psrResponse = $psrResponse;
@@ -193,7 +193,7 @@ class Response
     /**
      * Get the JSON decoded body of the response as an array or scalar value.
      *
-     * @param array-key|null $key
+     * @param  array-key|null  $key
      * @return ($key is null ? array<array-key, mixed> : mixed)
      */
     public function json(string|int|null $key = null, mixed $default = null): mixed
@@ -214,7 +214,7 @@ class Response
      *
      * Alias of json()
      *
-     * @param array-key|null $key
+     * @param  array-key|null  $key
      * @return ($key is null ? array<array-key, mixed> : mixed)
      */
     public function array(int|string|null $key = null, mixed $default = null): mixed
@@ -265,9 +265,10 @@ class Response
      * Get the JSON decoded body of the response as a collection.
      *
      * Requires Laravel Collections (composer require illuminate/collections)
+     *
      * @see https://github.com/illuminate/collections
      *
-     * @param array-key|null $key
+     * @param  array-key|null  $key
      * @return \Illuminate\Support\Collection<array-key, mixed>
      */
     public function collect(string|int|null $key = null): Collection
@@ -289,6 +290,7 @@ class Response
      * Cast the response to a DTO.
      *
      * @template T of object
+     *
      * @return ($dto is class-string<T> ? T : object)
      */
     public function dto(?string $dto = null): mixed
@@ -309,6 +311,7 @@ class Response
      * Convert the response into a DTO or throw a LogicException if the response failed
      *
      * @template T of object
+     *
      * @return ($dto is class-string<T> ? T : object)
      */
     public function dtoOrFail(?string $dto = null): mixed
@@ -400,7 +403,7 @@ class Response
     /**
      * Execute the given callback if there was a server or client error.
      *
-     * @param callable($this): (void) $callback
+     * @param  callable($this): (void)  $callback
      * @return $this
      */
     public function onError(callable $callback): static
@@ -460,6 +463,7 @@ class Response
      * Throw an exception if a server or client error occurred.
      *
      * @return $this
+     *
      * @throws \Throwable
      */
     public function throw(): static
@@ -504,7 +508,7 @@ class Response
     /**
      * Save the body to a file
      *
-     * @param string|resource $resourceOrPath
+     * @param  string|resource  $resourceOrPath
      */
     public function saveBodyToFile(mixed $resourceOrPath, bool $closeResource = true): void
     {
