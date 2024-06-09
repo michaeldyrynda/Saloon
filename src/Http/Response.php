@@ -291,14 +291,20 @@ class Response
      *
      * @template T of object
      *
-     * @return ($dto is class-string<T> ? T : object)
+     * @return ($type is class-string<T> ? T : object)
      */
-    public function dto(?string $dto = null): mixed
+    public function dto(?string $type = null): mixed
     {
         $request = $this->pendingRequest->getRequest();
         $connector = $this->pendingRequest->getConnector();
 
         $dataObject = $request->createDtoFromResponse($this) ?? $connector->createDtoFromResponse($this);
+
+        if (! is_null($type) && ! is_null($dataObject) && $dataObject::class !== $type) {
+            throw new InvalidArgumentException(
+                message: sprintf('The class-string provided [%s] must match the class-string returned by the connector/request [%s].', $type, $dataObject::class),
+            );
+        }
 
         if ($dataObject instanceof WithResponse) {
             $dataObject->setResponse($this);
@@ -312,15 +318,16 @@ class Response
      *
      * @template T of object
      *
-     * @return ($dto is class-string<T> ? T : object)
+     * @param class-string<T>|null $type
+     * @return ($type is class-string<T> ? T : object)
      */
-    public function dtoOrFail(?string $dto = null): mixed
+    public function dtoOrFail(?string $type = null): mixed
     {
         if ($this->failed()) {
             throw new LogicException('Unable to create data transfer object as the response has failed.', 0, $this->toException());
         }
 
-        return $this->dto($dto);
+        return $this->dto($type);
     }
 
     /**
