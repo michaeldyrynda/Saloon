@@ -7,9 +7,9 @@ use Saloon\Http\Faking\MockResponse;
 use Saloon\Tests\Fixtures\Data\User;
 use Saloon\Contracts\DataObjects\WithResponse;
 use Saloon\Tests\Fixtures\Requests\DTORequest;
+use Saloon\Tests\Fixtures\Requests\UserRequest;
 use Saloon\Tests\Fixtures\Data\UserWithResponse;
 use Saloon\Tests\Fixtures\Requests\DTOWithResponseRequest;
-use Saloon\Tests\Fixtures\Requests\UserRequest;
 
 test('if a dto does not implement the WithResponse interface and HasResponse trait Saloon will not add the original response', function () {
     $mockClient = new MockClient([
